@@ -240,8 +240,20 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const chars = str.split('');
+  return chars.map((x) => {
+    if (x.charCodeAt(0) >= 65 && x.charCodeAt(0) <= 90) {
+      return x.charCodeAt(0) <= 77 ? String.fromCharCode(x.charCodeAt(0) + 13)
+        : String.fromCharCode(x.charCodeAt(0) - 13);
+    }
+    if ((x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)) {
+      return x.charCodeAt(0) <= 109 ? String.fromCharCode(x.charCodeAt(0) + 13)
+        : String.fromCharCode(x.charCodeAt(0) - 13);
+    }
+    return x;
+  })
+    .join('');
 }
 
 /**
@@ -257,8 +269,8 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
 
 
@@ -286,8 +298,27 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cardMap = {
+    typeMap: {
+      '♣': 0,
+      '♦': 1,
+      '♥': 2,
+      '♠': 3,
+    },
+    valueMap: {
+      A: '1',
+      J: '11',
+      Q: '12',
+      K: '13',
+    },
+  };
+
+  const cardType = value[value.length - 1];
+  const cardStrength = value.slice(0, value.length - 1);
+
+  return cardMap.typeMap[cardType] * 13 - 1 + (Number(cardStrength)
+    ? Number(cardStrength) : Number(cardMap.valueMap[cardStrength]));
 }
 
 
