@@ -10,8 +10,8 @@ describe('01-strings-tasks', () => {
   });
 
   it.optional('getStringLength should return the length of string', () => {
-    assert.equal(5, tasks.getStringLength('aaaaa'), "'aaaaa' length should be 5");
-    assert.equal(0, tasks.getStringLength(''), "'' length should be 0");
+    assert.equal(5, tasks.getStringLength('aaaaa'), '\'aaaaa\' length should be 5');
+    assert.equal(0, tasks.getStringLength(''), '\'\' length should be 0');
   });
 
   it.optional('getStringFromTemplate should create a string from template using given parameters', () => {
@@ -71,7 +71,7 @@ describe('01-strings-tasks', () => {
   it.optional('getRectangleString should return the string reprentation of rectangle with specified size', () => {
     assert.equal(
       // eslint-disable-next-line indent
-        '┌────┐\n'
+      '┌────┐\n'
       + '│    │\n'
       + '│    │\n'
       + '└────┘\n',
@@ -79,13 +79,13 @@ describe('01-strings-tasks', () => {
     );
     assert.deepEqual(
       // eslint-disable-next-line indent
-        '┌┐\n'
+      '┌┐\n'
       + '└┘\n',
       tasks.getRectangleString(2, 2),
     );
     assert.deepEqual(
       // eslint-disable-next-line indent
-        '┌──────────┐\n'
+      '┌──────────┐\n'
       + '│          │\n'
       + '└──────────┘\n',
       tasks.getRectangleString(12, 3),
@@ -108,7 +108,7 @@ describe('01-strings-tasks', () => {
     assert.equal(false, tasks.isString([]), '[]');
     assert.equal(true, tasks.isString('test'), 'test');
     // eslint-disable-next-line no-new-wrappers
-    assert.equal(true, tasks.isString(new String('test')), "new String('test')");
+    assert.equal(true, tasks.isString(new String('test')), 'new String(\'test\')');
   });
 
   it.optional('getCardId should return the index of card in the initial deck', () => {
