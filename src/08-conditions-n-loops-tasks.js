@@ -473,8 +473,28 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const rows1 = m1.length;
+  const columns1 = m1[0].length;
+  const rows2 = m2.length;
+  const columns2 = m2[0].length;
+  const result = [];
+  if (columns1 !== rows2) {
+    throw new Error('the number of columns in the first matrix must be equal to the number of rows in the second matrix');
+  }
+  for (let i = 0; i < rows1; i += 1) {
+    result[i] = [];
+  }
+  for (let j = 0; j < columns2; j += 1) {
+    for (let i = 0; i < rows1; i += 1) {
+      let temp = 0;
+      for (let k = 0; k < rows2; k += 1) {
+        temp += m1[i][k] * m2[k][j];
+        result[i][j] = temp;
+      }
+    }
+  }
+  return result;
 }
 
 
